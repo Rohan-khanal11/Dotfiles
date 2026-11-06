@@ -10,8 +10,10 @@ local exec = hl.dsp.exec_cmd
 --  Helpers
 -- ============================================================
 
-local vol_osd = "qs -n -p " .. home .. "/.config/quickshell/volume/shell.qml"
-local brightness_osd = "qs -n -p " .. home .. "/.config/quickshell/Brightness.qml"
+local levels_path = home .. "/Projects/Dotfiles/quickshell/levels.qml"
+
+local levels_osd = "sh -c 'qs ipc -p " .. levels_path .. " call levels flash"
+    .. " || LEVELS_OSD=1 qs -n -d -p " .. levels_path .. "'"
 
 local shutdown_cmd =
     "command -v hyprshutdown >/dev/null 2>&1"
@@ -123,14 +125,14 @@ local held = { locked = true, repeating = true }
 local lock = { locked = true }
 
 -- Volume
-bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && " .. vol_osd), held)
-bind("XF86AudioLowerVolume", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && "      .. vol_osd), held)
-bind("XF86AudioMute",        exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),                     held)
+bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && " .. levels_osd), held)
+bind("XF86AudioLowerVolume", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && "      .. levels_osd), held)
+bind("XF86AudioMute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && " .. levels_osd), held)
 bind("XF86AudioMicMute",     exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),                   held)
 
 -- Brightness
-bind("XF86MonBrightnessUp",   exec("brightnessctl -e4 -n2 set 5%+ &&" .. brightness_osd), held)
-bind("XF86MonBrightnessDown", exec("brightnessctl -e4 -n2 set 5%- && " .. brightness_osd), held)
+bind("XF86MonBrightnessUp",   exec("brightnessctl -e4 -n2 set 5%+ && " .. levels_osd), held)
+bind("XF86MonBrightnessDown", exec("brightnessctl -e4 -n2 set 5%- && " .. levels_osd), held)
 
 -- Player
 bind("XF86AudioNext",  exec("playerctl next"),       lock)
