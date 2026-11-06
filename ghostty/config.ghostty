@@ -1,0 +1,55 @@
+# ==========================
+# Ghostty – Roman Ash
+# Museum Stone Palette
+# ==========================
+
+# Window
+window-padding-x = 10
+window-padding-y = 10
+background-opacity = 0.88
+window-decoration = false
+confirm-close-surface = false
+
+# Font
+font-family = IosevkaTerm Nerd Font
+font-style = Medium
+font-size = 13
+
+# Cursor
+cursor-style = underline
+cursor-style-blink = false
+
+# Selection
+copy-on-select = true
+
+# Colors
+bold-is-bright = false
+
+background = #101010
+foreground = #DAD7D2
+
+cursor-color = #DAD7D2
+cursor-text = #101010
+
+selection-foreground = #FFFFFF
+selection-background = #252525
+
+# Normal colors (0–7)
+palette = 0=#101010
+palette = 1=#6E6A67
+palette = 2=#7A7F78
+palette = 3=#8C8A84
+palette = 4=#8F949A
+palette = 5=#9A9794
+palette = 6=#A5A29E
+palette = 7=#DAD7D2
+
+# Bright colors (8–15)
+palette = 8=#2A2A2A
+palette = 9=#8C8783
+palette = 10=#9AA096
+palette = 11=#B0ADA6
+palette = 12=#B5BCC6
+palette = 13=#BFBAB4
+palette = 14=#C9C6C1
+palette = 15=#FFFFFF

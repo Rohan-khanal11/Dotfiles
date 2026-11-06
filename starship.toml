@@ -1,0 +1,69 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[░▒▓](#c0c0c0)\
+[ 󰣇 ](bg:#c0c0c0 fg:#090c0c)\
+[](fg:#c0c0c0 bg:#888888)\
+$username\
+$directory\
+[](fg:#888888 bg:#4a4a4a)\
+$git_branch\
+$git_status\
+[](fg:#4a4a4a bg:#2e2e2e)\
+$c\
+[](fg:#2e2e2e bg:#1e1e1e)\
+$lua\
+[](fg:#2e2e2e bg:#1e1e1e)\
+$time\
+[](fg:#1e1e1e)\
+\n$character
+"""
+
+[username]
+show_always = true
+style_user = "fg:#f0f0f0 bg:#888888"
+style_root = "fg:#ff5555 bg:#888888"
+format = "[ $user]($style)"
+
+[directory]
+style = "fg:#f0f0f0 bg:#888888"
+format = "[$path ]($style)"
+truncation_length = 3
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+home_symbol = ""
+
+[directory.substitutions]
+"Documents" = "󰈙"
+"Downloads" = "󰉍"
+"Music" = "󰝚"
+"Pictures" = "󰋩"
+
+[git_branch]
+symbol = " "
+style = "bg:#4a4a4a"
+format = '[[$symbol $branch](fg:#d0d0d0 bg:#4a4a4a)]($style)'
+
+[git_status]
+style = "bg:#4a4a4a"
+format = '[[$all_status$ahead_behind ](fg:#d0d0d0 bg:#4a4a4a)]($style)'
+
+[c]
+symbol = " "
+style = "bg:#2e2e2e"
+format = '[[$symbol $version](fg:#d0d0d0 bg:#2e2e2e)]($style)'
+
+[lua]
+symbol = " "
+style = "bg:#2e2e2e"
+format = '[[$symbol $version](fg:#d0d0d0 bg:#2e2e2e)]($style)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:#1e1e1e"
+format = '[[  $time ](fg:#a0a0a0 bg:#1e1e1e)]($style)'
+
+[character]
+success_symbol = "[❯](bold #c0c0c0)"
+error_symbol = "[❯](bold red)"
