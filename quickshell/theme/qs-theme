@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# qs-theme            show the current theme
+# qs-theme list       list themes
+# qs-theme <name>     switch to a theme
+# qs-theme next|prev  cycle
+set -euo pipefail
+
+dir="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+state="$HOME/.local/state/qs-theme-name"
+
+# the theme list lives in Theme.qml (the "// @themes:" line)
+mapfile -t themes < <(sed -n 's#^// @themes: *##p' "$dir/Theme.qml" | tr ' ' '\n' | sed '/^$/d')
+[ "${#themes[@]}" -gt 0 ] || { echo "no '// @themes:' line found in $dir/Theme.qml" >&2; exit 1; }
+
+cur="$(cat "$state" 2>/dev/null || true)"
+[ -n "$cur" ] || cur="${themes[0]}"
+
+index_of() {
+    local i
+    for i in "${!themes[@]}"; do [ "${themes[$i]}" = "$1" ] && { echo "$i"; return; }; done
+    echo 0
+}
+
+case "${1:-current}" in
+    current) echo "$cur"; exit 0 ;;
+    list)    printf '%s\n' "${themes[@]}"; exit 0 ;;
+    next)    new="${themes[$(( ($(index_of "$cur") + 1) % ${#themes[@]} ))]}" ;;
+    prev)    new="${themes[$(( ($(index_of "$cur") + ${#themes[@]} - 1) % ${#themes[@]} ))]}" ;;
+    *)
+        new="$1"
+        printf '%s\n' "${themes[@]}" | grep -qx -- "$new" || {
+            echo "unknown theme '$new'. available: ${themes[*]}" >&2; exit 1; }
+        ;;
+esac
+
+mkdir -p "$(dirname "$state")"
+printf '%s\n' "$new" > "$state"
+echo "$new"

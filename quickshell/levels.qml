@@ -6,10 +6,6 @@ import Quickshell.Hyprland
 import Quickshell.Services.Pipewire
 import "./theme"
 
-// Brightness + volume panel. Standalone: only needs the shared ./theme folder (Theme.qml + qmldir).
-// On demand: the process starts open and exits when the panel closes.
-// Toggle: qs ipc -p <this file> call levels toggle || qs -d -p <this file>
-// OSD style (auto-hides): LEVELS_OSD=1 qs -d -p <this file>
 ShellRoot {
     id: root
     property bool open: true
@@ -222,7 +218,7 @@ ShellRoot {
         Behavior on p { NumberAnimation { duration: root.open ? 260 : 160; easing.type: root.open ? Easing.OutCubic : Easing.InCubic } }
 
         visible: root.open || p > 0
-        anchors.right: true     // right edge only: the compositor centers it vertically
+        anchors.right: true
         margins.right: 8
         exclusionMode: ExclusionMode.Ignore
         WlrLayershell.namespace: "qslevels"

@@ -16,7 +16,8 @@ PanelWindow {
     readonly property var entries: [
         { icon: "󰐥", label: "Shutdown", cmd: ["systemctl", "poweroff"] },
         { icon: "󰜉", label: "Reboot", cmd: ["systemctl", "reboot"] },
-        { icon: "󰒲", label: "Sleep", cmd: ["systemctl", "suspend"] }
+        { icon: "󰒲", label: "Sleep", cmd: ["systemctl", "suspend"] },
+        { icon: "󰍃", label: "Log Out", cmd: ["hyprlock"] }
     ]
     property int cur: 0           // Shutdown selected by default
     property bool armed: false    // ignore input for a moment after opening
