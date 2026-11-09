@@ -1,3 +1,5 @@
+import "./bar"
+import "./theme"
 import QtQuick
 import Quickshell
 import Quickshell.Io

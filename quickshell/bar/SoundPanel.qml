@@ -1,3 +1,4 @@
+import "../theme"
 import QtQuick
 import Quickshell.Services.Pipewire
 import Quickshell.Bluetooth

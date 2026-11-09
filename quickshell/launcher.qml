@@ -1,3 +1,4 @@
+import "./theme"
 import Quickshell
 import Quickshell.Wayland
 import QtQuick

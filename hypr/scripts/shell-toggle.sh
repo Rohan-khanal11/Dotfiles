@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 DIR=/home/khanal/.config/quickshell
-CONFIGS=("$DIR/Wallpaper.qml" "$DIR/bar/shell.qml")
-LAUNCHER="$DIR/launcher/shell.qml"
+CONFIGS=("$DIR/Wallpaper.qml" "$DIR/bar.qml")
+LAUNCHER="$DIR/launcher.qml"
 
 any_running() {
   pgrep -x quickshell >/dev/null || pgrep -x qs >/dev/null
