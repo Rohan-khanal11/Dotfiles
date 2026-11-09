@@ -47,6 +47,7 @@ bind(mainMod .. " + C",      exec("snapshot"))
 bind(mainMod .. " + Y",      exec("emacs"))
 bind(mainMod .. " + T",      exec(home .. "/Downloads/PrismLauncher-Linux-x86_64.AppImage"))
 bind(mainMod .. " + A",      exec("qs -p " .. home .. "/.config/quickshell/Wallpaper.qml ipc call wallpaper toggle"))
+bind(mainMod .. " + U",      exec("qs -p " ..home.. "/.config/quickshell/power.qml"))
 bind(mainMod .. " + W",      exec(home .. "/.config/hypr/scripts/shell-toggle.sh toggle"))
 
 
